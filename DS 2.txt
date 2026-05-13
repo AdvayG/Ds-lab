@@ -1,0 +1,20 @@
+import pandas as pd
+import numpy as np 
+
+df = pd.DataFrame({
+    'marks': [45,67,89,None, 34,98, 200,500],
+    'hours': [2, 3, 4, None, 1, 6,5,8]
+})
+
+
+
+
+df.fillna(df.mean(), inplace=True)#inplce meaning change the data directly in the df
+
+
+df = df[df['marks']<100]
+
+
+
+df['marks_log'] = np.log(df['marks'])#Apply Logarithmic Transformation
+print(df)

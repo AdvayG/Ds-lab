@@ -1,0 +1,22 @@
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+
+# Load dataset
+df = pd.read_csv(r"C:\Users\admin\Downloads\BostonHousing.csv")
+
+# Features and target
+X = df.drop('medv', axis=1)   # target column
+y = df['medv']
+
+# Split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+# Model
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# Predict
+pred = model.predict(X_test)
+
+print("Predictions:", pred[:5])

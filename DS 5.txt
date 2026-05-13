@@ -1,0 +1,31 @@
+import pandas as pd
+import seaborn as sns
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, recall_score
+
+# Load dataset
+df = pd.read_csv("Social_Network_Ads.csv")
+
+# Features & target
+X = df[['Age', 'EstimatedSalary']]
+y = df['Purchased']
+
+# Split
+x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+# Model (ONLY CHANGE)
+model = LogisticRegression()
+model.fit(x_train, y_train)
+
+# Predict
+y_pred = model.predict(x_test)
+
+# Same metrics
+cm = confusion_matrix(y_test, y_pred)
+print("CM:\n", cm)
+
+print("Accuracy:", accuracy_score(y_test, y_pred))
+print("Error:", 1 - accuracy_score(y_test, y_pred))
+print("Precision:", precision_score(y_test, y_pred))
+print("Recall:", recall_score(y_test, y_pred))
